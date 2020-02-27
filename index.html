@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script>
+	var f1,f2,f3,f4,f5;
+f1 = false;
+f2 = false;
+f3 = false;
+f4 = false;
+f5 = false;
+
+var g = 9.8;
+
+function findValue()
+{
+var k,zo,z,ta,tw,uhr,r1,eb,e1m,d,rho,cc,mu;
+
+k = document.getElementById("k");
+zo = document.getElementById("zo");
+z = document.getElementById("z");
+ta = document.getElementById("ta");
+tw = document.getElementById("tw");
+uhr = document.getElementById("uhr");
+r1 = document.getElementById("r1");
+eb = document.getElementById("eb");
+e1m = document.getElementById("e1m");
+d = document.getElementById("D");
+rho = document.getElementById("rho");
+cc = document.getElementById("cc");
+mu = document.getElementById("mu");
+
+var kValue,zoValue,zValue,taValue,twValue,uhrValue,r1Value,ebValue,e1mValue,dValue,rhoValue,ccValue,muValue;
+kValue = k.value;
+zoValue = zo.value;
+zValue = z.value;
+taValue = ta.value;
+twValue = tw.value;
+uhrValue = uhr.value;
+r1Value = r1.value;
+ebValue = eb.value;
+e1mValue = e1m.value;
+dValue = d.value;
+rhoValue = rho.value;
+ccValue = cc.value;
+muValue = mu.value;
+}
+
+
+
+
+	</script>
+<title>Index</title>
+</head>
+<body>
+	<div class="jumbotron">
+				<center><h1>Project SOLAR</h1></center>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="jumbotron">
+				<center><h3>Constants</h3></center>
+				</div>
+				<div class="panel-body">
+				<form name="constants">
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="k">Von Karman Constant(k):</label>
+    					 <input type="text" class="form-control" id="k" value="0.40" required disabled>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="zo">Roughness Length(z<sub>o</sub>):</label>
+    					 <input type="text" class="form-control" id="zo" value="1" required disabled>
+					</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="k">Reference Height(z):</label>
+    					 <input type="text" class="form-control" id="z" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="submit" value="Submit Constants" class="btn btn-primary" style="width: 100%;">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="jumbotron">
+				<center><h3>Monin-Obukhov Length</h3></center>
+				</div>
+				<div class="panel-body">
+				<form name="moninOLength">
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="Ta">Ambient Temperature(T<sub>a</sub>):</label>
+    					 <input type="text" class="form-control" id="ta" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="Ta">Water Temperature(T<sub>w</sub>):</label>
+    					 <input type="text" class="form-control" id="tw" required>
+					</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="submit" value="Get Monin Obukhov Length" class="btn btn-primary" style="width: 100%;">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="jumbotron">
+				<center><h3>Friction Velocity(u<sub>*</sub>)</h3></center>
+				</div>
+				<div class="panel-body">
+				<form name="frictionVelocity">
+					<div class="row">
+						<div class="col-lg-12">
+						<div class="form-group">
+						 <label for="Ta">Wind Velocity at height h<sub>r</sub>(u(h<sub>r</sub>)):</label>
+    					 <input type="text" class="form-control" id="uhr" required>
+					</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="submit" value="Get Friction Velocity" class="btn btn-primary" style="width: 100%;">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="jumbotron">
+				<center><h3>Quasi Laminar Resistance<b>(r<sub>b</sub>)</b></h3></center>
+				</div>
+				<div class="panel-body">
+				<form name="constants">
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="r1">Correction factor(R<sub>1</sub>):</label>
+    					 <input type="text" class="form-control" id="r1" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="eb">Collection Efficiency from brownian diffusion(E<sub>B</sub>):</label>
+    					 <input type="text" class="form-control" id="eb" required>
+					</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="e1m">Collection Effiiency from Impaction(E<sub>1M</sub>:</label>
+    					 <input type="text" class="form-control" id="e1m" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="submit" value="Get Quasi Laminar Resistance" class="btn btn-primary" style="width: 100%;">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+				</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="jumbotron">
+				<center><h3>Settling velocity<b>(v<sub>s</sub>)</b></h3></center>
+				</div>
+				<div class="panel-body">
+				<form name="constants">
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="D">Diameter of Dust Particles(D<sub>p</sub>):</label>
+    					 <input type="text" class="form-control" id="D" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="rho">Denisty of particles(&rho;<sub>p</sub>):</label>
+    					 <input type="text" class="form-control" id="rho" required>
+					</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="cc">Slip Correction Factor(C<sub>c</sub>:</label>
+    					 <input type="text" class="form-control" id="cc" required>
+					</div>
+						</div>
+						<div class="col-lg-6">
+								<div class="form-group">
+						 <label for="mu">Air Viscosity(&mu;):</label>
+    					 <input type="text" class="form-control" id="mu" required>
+						</div>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="submit" value="Get Settling Velocity" class="btn btn-primary" style="width: 100%;">
+						</div>
+					</div>
+				</form>
+				</div>
+		</div>
+				</div>
+			</div>
+		<button type="button" class="btn btn-primary" style="width: 100%;">Get Dipposition Velocity(V<sub>d</sub>)</button>
+	</div>
+		<div class="jumbotron" style="margin-bottom: 0;margin-top: 25px;">
+	<center>&copy;<b>navdeepisno1</b></center>
+	</div>
+</body>
+</html>
