@@ -2,84 +2,62 @@
 <html>
 <head>
  <meta charset="utf-8">
+ <style>
+	*
+	{
+		font-family: arial;
+	}
+ </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script>
-	var f1,f2,f3,f4,f5;
-f1 = false;
-f2 = false;
-f3 = false;
-f4 = false;
-f5 = false;
-
-var g = 9.8;
-
-function findValue()
-{
-var k,zo,z,ta,tw,uhr,r1,eb,e1m,d,rho,cc,mu;
-
-k = document.getElementById("k");
-zo = document.getElementById("zo");
-z = document.getElementById("z");
-ta = document.getElementById("ta");
-tw = document.getElementById("tw");
-uhr = document.getElementById("uhr");
-r1 = document.getElementById("r1");
-eb = document.getElementById("eb");
-e1m = document.getElementById("e1m");
-d = document.getElementById("D");
-rho = document.getElementById("rho");
-cc = document.getElementById("cc");
-mu = document.getElementById("mu");
-
-var kValue,zoValue,zValue,taValue,twValue,uhrValue,r1Value,ebValue,e1mValue,dValue,rhoValue,ccValue,muValue;
-kValue = k.value;
-zoValue = zo.value;
-zValue = z.value;
-taValue = ta.value;
-twValue = tw.value;
-uhrValue = uhr.value;
-r1Value = r1.value;
-ebValue = eb.value;
-e1mValue = e1m.value;
-dValue = d.value;
-rhoValue = rho.value;
-ccValue = cc.value;
-muValue = mu.value;
-}
-
-
-
-
-	</script>
-<title>Calculate Dipposition Velocity</title>
+<script>
+	var f = [false, false, false, false,false];
+	console.log(f);
+	function MakeTrue(i)
+	{
+		f[i] = true;
+		console.log(f);
+		return false;
+	}
+</script>
+<title>Index</title>
 </head>
 <body>
+	<script>
+		var specialKeys = new Array();
+			specialKeys.push(8); //Backspace
+			specialKeys.push(46); //dot
+			function IsNumeric(e) {
+				var keyCode = e.which ? e.which : e.keyCode
+				var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+				return ret;
+			}
+	</script>
 	<div class="jumbotron">
-				<center><h1>Project SOLAR</h1></center>
+		<center><h1>Project SOLAR</h1></center>
 	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="jumbotron">
+					<div class="jumbotron" id="constantDiv">
 				<center><h3>Constants</h3></center>
 				</div>
 				<div class="panel-body">
-				<form name="constants">
+				<form name="constants" onsubmit="return MakeTrue(0);">
 					<div class="row">
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="k">Von Karman Constant(k):</label>
-    					 <input type="text" class="form-control" id="k" value="0.40" required disabled>
+    					 <input type="text" class="form-control" id="k" required placeholder="no units" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="zo">Roughness Length(z<sub>o</sub>):</label>
-    					 <input type="text" class="form-control" id="zo" value="1" required disabled>
+    					 <input type="text" class="form-control" id="zo" required placeholder="metre" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 					</div>
@@ -87,15 +65,18 @@ muValue = mu.value;
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="k">Reference Height(z):</label>
-    					 <input type="text" class="form-control" id="z" required>
+    					 <input type="text" class="form-control" id="z" required placeholder="metre" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<input type="submit" value="Submit Constants" class="btn btn-primary" style="width: 100%;">
+						<div class="col-lg-6">
+							<input type="submit" value="Submit Constants" class="btn btn-success" style="width: 100%;">
+						</div>
+						<div class="col-lg-6">
+							<input type="reset" value="Reset" class="btn btn-primary" style="width: 100%;">
 						</div>
 					</div>
 				</form>
@@ -110,24 +91,27 @@ muValue = mu.value;
 				<center><h3>Monin-Obukhov Length</h3></center>
 				</div>
 				<div class="panel-body">
-				<form name="moninOLength">
+				<form name="moninOLength" onsubmit="return MakeTrue(1);">
 					<div class="row">
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="Ta">Ambient Temperature(T<sub>a</sub>):</label>
-    					 <input type="text" class="form-control" id="ta" required>
+    					 <input type="text" class="form-control" id="ta" required placeholder="celcius" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="Ta">Water Temperature(T<sub>w</sub>):</label>
-    					 <input type="text" class="form-control" id="tw" required>
+    					 <input type="text" class="form-control" id="tw" required placeholder="celcius" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<input type="submit" value="Get Monin Obukhov Length" class="btn btn-primary" style="width: 100%;">
+						<div class="col-lg-16">
+							<input type="submit" value="Submit Monin Obukhov Length Parameters" class="btn btn-success" style="width: 100%;">
+						</div>
+						<div class="col-lg-6">
+							<input type="reset" value="Reset" class="btn btn-primary" style="width: 100%;">
 						</div>
 					</div>
 				</form>
@@ -142,18 +126,27 @@ muValue = mu.value;
 				<center><h3>Friction Velocity(u<sub>*</sub>)</h3></center>
 				</div>
 				<div class="panel-body">
-				<form name="frictionVelocity">
+				<form name="frictionVelocity" onsubmit="return MakeTrue(2);">
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-6">
 						<div class="form-group">
-						 <label for="Ta">Wind Velocity at height h<sub>r</sub>(u(h<sub>r</sub>)):</label>
-    					 <input type="text" class="form-control" id="uhr" required>
-					</div>
+						 <label for="hr">Height(h<sub>r</sub>):</label>
+    					 <input type="text" class="form-control" id="hr" required placeholder="metre" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+						</div>
+						</div>
+						<div class="col-lg-6">
+						<div class="form-group">
+						 <label for="hr">Wind Velocity at height h<sub>r</sub>(u(h<sub>r</sub>)):</label>
+    					 <input type="text" class="form-control" id="uhr" required placeholder="metre/sec" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+						</div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<input type="submit" value="Get Friction Velocity" class="btn btn-primary" style="width: 100%;">
+						<div class="col-lg-6">
+							<input type="submit" value="Submit Friction Velocity Parameters" class="btn btn-success" style="width: 100%;">
+						</div>
+						<div class="col-lg-6">
+							<input type="reset" value="Reset" class="btn btn-primary" style="width: 100%;">
 						</div>
 					</div>
 				</form>
@@ -168,18 +161,18 @@ muValue = mu.value;
 				<center><h3>Quasi Laminar Resistance<b>(r<sub>b</sub>)</b></h3></center>
 				</div>
 				<div class="panel-body">
-				<form name="constants">
+				<form name="constants" onsubmit="return MakeTrue(3);">
 					<div class="row">
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="r1">Correction factor(R<sub>1</sub>):</label>
-    					 <input type="text" class="form-control" id="r1" required>
+    					 <input type="text" class="form-control" id="r1" required placeholder="no units" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="eb">Collection Efficiency from brownian diffusion(E<sub>B</sub>):</label>
-    					 <input type="text" class="form-control" id="eb" required>
+    					 <input type="text" class="form-control" id="eb" required placeholder="no units" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 					</div>
@@ -187,15 +180,18 @@ muValue = mu.value;
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="e1m">Collection Effiiency from Impaction(E<sub>1M</sub>:</label>
-    					 <input type="text" class="form-control" id="e1m" required>
+    					 <input type="text" class="form-control" id="e1m" required placeholder="no units" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<input type="submit" value="Get Quasi Laminar Resistance" class="btn btn-primary" style="width: 100%;">
+						<div class="col-lg-6">
+							<input type="submit" value="Submit Quasi Laminar Resistance Parameters" class="btn btn-success" style="width: 100%;">
+						</div>
+						<div class="col-lg-6">
+							<input type="reset" value="Reset" class="btn btn-primary" style="width: 100%;">
 						</div>
 					</div>
 				</form>
@@ -210,18 +206,18 @@ muValue = mu.value;
 				<center><h3>Settling velocity<b>(v<sub>s</sub>)</b></h3></center>
 				</div>
 				<div class="panel-body">
-				<form name="constants">
+				<form name="constants" onsubmit="return MakeTrue(4);">
 					<div class="row">
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="D">Diameter of Dust Particles(D<sub>p</sub>):</label>
-    					 <input type="text" class="form-control" id="D" required>
+    					 <input type="text" class="form-control" id="D" required placeholder="metre" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="rho">Denisty of particles(&rho;<sub>p</sub>):</label>
-    					 <input type="text" class="form-control" id="rho" required>
+    					 <input type="text" class="form-control" id="rho" required placeholder="kilogram per metre cube" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 					</div>
@@ -229,19 +225,22 @@ muValue = mu.value;
 						<div class="col-lg-6">
 						<div class="form-group">
 						 <label for="cc">Slip Correction Factor(C<sub>c</sub>:</label>
-    					 <input type="text" class="form-control" id="cc" required>
+    					 <input type="text" class="form-control" id="cc" required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 					</div>
 						</div>
 						<div class="col-lg-6">
 								<div class="form-group">
 						 <label for="mu">Air Viscosity(&mu;):</label>
-    					 <input type="text" class="form-control" id="mu" required>
+    					 <input type="text" class="form-control" id="mu" required placeholder="kilogram per metre per second" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 						</div>
 					</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<input type="submit" value="Get Settling Velocity" class="btn btn-primary" style="width: 100%;">
+						<div class="col-lg-6">
+							<input type="submit" value="Submit Settling Velocity" class="btn btn-success" style="width: 100%;">
+						</div>
+						<div class="col-lg-6">
+							<input type="reset" value="Reset" class="btn btn-primary" style="width: 100%;">
 						</div>
 					</div>
 				</form>
@@ -249,8 +248,142 @@ muValue = mu.value;
 		</div>
 				</div>
 			</div>
-		<button type="button" class="btn btn-primary" style="width: 100%;">Get Dipposition Velocity(V<sub>d</sub>)</button>
+		<button type="button" class="btn btn-primary" style="width: 100%;" onclick="findValue()" data-toggle="modal" data-target="#myModal">Get Dipposition Velocity(V<sub>d</sub>)</button>
+
+		<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Answers</h4>
+        </div>
+        <div class="modal-body">
+			<div class="row">
+				<div class="col-lg-12">
+					<b>Monin-Obukhov Length:</b> <div id="moninValueAnswer">0</div>
+				</div>
+				<div class="col-lg-12">
+					<b>Aerodynamics Resistance:</b> <div id="raValueAnswer">0</div>
+				</div>
+				<div class="col-lg-12">
+					<b>Quasi Laminar Resistance:</b> <div id="rbValueAnswer">0</div>
+				</div>
+				<div class="col-lg-12">
+					<b>Settling Velocity:</b> <div id="vsValueAnswer">0</div>
+				</div>
+				<div class="col-lg-12">
+					<b>Dipposition Velocity:</b> <div id="vdValueAnswer">0</div>
+				</div>
+			</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 	</div>
+<script>
+	var g = 9.8;
+	var e2 = 0.0051;
+	var u10 = 1.365;
+
+	function findValue()
+	{
+		if(f[0] && f[1] && f[2] && f[3] && f[4])
+		{
+			var k,zo,z,ta,tw,uhr,r1,eb,e1m,d,rho,cc,mu,hr;
+	k = document.getElementById("k");
+	zo = document.getElementById("zo");
+	z = document.getElementById("z");
+	ta = document.getElementById("ta");
+	tw = document.getElementById("tw");
+	uhr = document.getElementById("uhr");
+	r1 = document.getElementById("r1");
+	eb = document.getElementById("eb");
+	e1m = document.getElementById("e1m");
+	d = document.getElementById("D");
+	rho = document.getElementById("rho");
+	cc = document.getElementById("cc");
+	mu = document.getElementById("mu");
+	hr = document.getElementById("hr");
+
+	var kValue,zoValue,zValue,taValue,twValue,uhrValue,r1Value,ebValue,e1mValue,dValue,rhoValue,ccValue,muValue,hrValue;
+	kValue = k.value;
+	zoValue = zo.value;
+	zValue = z.value;
+	taValue = ta.value;
+	twValue = tw.value;
+	uhrValue = uhr.value;
+	r1Value = r1.value;
+	ebValue = eb.value;
+	e1mValue = e1m.value;
+	dValue = d.value;
+	rhoValue = rho.value;
+	ccValue = cc.value;
+	muValue = mu.value;
+	hrValue = hr.value;
+
+	var L = (taValue + 273.16)*(((0.75 + (0.067 * u10))/1000)**(3/2))/(e2 * (taValue - twValue));
+	var vs = (dValue * dValue * rhoValue * g * ccValue) / (18 * muValue);
+	var ux = (k * uhrValue) / Math.log(hr/zoValue);
+	var rb = 1 / (3 * ux * r1Value * (ebValue + e1mValue));
+	var zetao = zoValue/L;
+	var zeta = zValue/L;
+	var itao = (1 - (15 * zetao))**(1/4);
+	var ita = (1 - (15 * zeta))**(1/4);
+	var ra;
+
+	console.log(L,ita,itao,zeta,zetao);
+	if(zeta == 0)
+	{
+		ra = (Math.log(zValue/zoValue))/(kValue * ux);
+	}
+	else if (zeta > 0 && zeta < 1)
+	{
+		ra = (Math.log(zValue/zoValue) + (4.7 * (zeta - zetao)))/(kValue * ux);
+	}
+	else if(zeta > -1 && zeta < 0)
+	{
+		var temp1 = (itao)**2 + 1;
+		var temp2 = (ita)**2 +1;
+		ra = (Math.log(zValue/zoValue) + 2 * Math.log(temp1/temp2))/(kValue * ux) + (2 * (Math.atan(ita) - Math.atan(itao)));
+	}
+
+	var vd = vs + 1/(ra + rb);
+	console.log(ra,rb,vs,vd);
+	document.getElementById("moninValueAnswer").innerHTML = L;
+	document.getElementById("raValueAnswer").innerHTML = ra;
+	document.getElementById("rbValueAnswer").innerHTML = rb;
+	document.getElementById("vsValueAnswer").innerHTML = vs;
+	document.getElementById("vdValueAnswer").innerHTML = vd;
+		}
+		else
+		{
+			if(!f[0])
+			{
+				alert("Submit Constants");
+			}
+			else if(!f[1])
+			{
+				alert("Submit MoninOLength Parameters");
+			}
+			else if(!f[2])
+			{
+				alert("Submit Friction Velocity Parameters");
+			}
+			else if(!f[3])
+			{
+				alert("Submit Quasi Laminar Resistance Parameters");
+			}
+			else if(!f[4])
+			{
+				alert("Submit Settling Velocity Parameters");
+			}
+		}
+	}
+</script>
 		<div class="jumbotron" style="margin-bottom: 0;margin-top: 25px;">
 	<center>&copy;<b>navdeepisno1</b></center>
 	</div>
